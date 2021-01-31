@@ -5,8 +5,10 @@ class Repository {
   int starts;
   int issues;
 
+  String owner;
+
   Repository(
-      {this.name, this.fullName, this.description, this.starts, this.issues});
+      {this.name, this.fullName, this.description, this.starts, this.issues, this.owner});
 
   Repository.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -14,6 +16,7 @@ class Repository {
     description = json['description'];
     starts = json['stargazers_count'];
     issues = json['open_issues_count'];
+    owner = json['owner']['url'];
   }
 
   Map<String, dynamic> toJson() {
@@ -23,6 +26,7 @@ class Repository {
     data['description'] = this.description;
     data['stargazers_count'] = this.starts;
     data['open_issues_count'] = this.issues;
+    data['owner'] = this.owner;
     return data;
   }
 }
